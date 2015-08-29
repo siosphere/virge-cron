@@ -9,7 +9,7 @@ use Virge\Cron\Model\Job;
  */
 class Cron {
     
-    protected $_jobs = array();
+    protected static $_jobs = array();
     
     /**
      * 
