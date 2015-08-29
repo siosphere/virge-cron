@@ -18,12 +18,13 @@ class Cron {
      * @param string $cronExpr
      */
     public static function add($jobName, $jobCallable, $jobArguments = [], $cronExpr = '0 0 * * *') {
-        self::$_jobs[] = new Job(array(
+        $job = new Job(array(
             'name'          =>  $jobName,
             'callable'      =>  $jobCallable,
-            'arguments'     =>  $jobArguments,
             'cron_expr'     =>  $cronExpr
         ));
+        $job->setArguments($jobArguments);
+        return self::$_jobs[] = $job;
     }
     
     /**
