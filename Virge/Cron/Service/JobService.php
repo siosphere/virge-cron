@@ -1,8 +1,8 @@
 <?php
 namespace Virge\Cron\Service;
 
-use Virge\ORM\Collection;
-use Virge\ORM\Collection\Filter;
+use Virge\ORM\Component\Collection;
+use Virge\ORM\Component\Collection\Filter;
 
 /**
  * 
