@@ -3,7 +3,7 @@
 namespace Virge\Cron\Command;
 
 use Virge\Cli;
-use Virge\Config;
+use Virge\Core\Config;
 
 /**
  * 
