@@ -42,7 +42,7 @@ class ScheduleService {
     protected function _scheduleJob(Job $job, \DateTime $scheduleTime) {
         $cronExpr = $this->getExpressionService()->formatCronExpression($job->getCronExpr());
 
-        if(!$this->getExpressionService()->isValidCronExpr($cronExpr)){
+        if(!$this->getExpressionService()->isValidCronExpression($cronExpr)){
             return FALSE;
         }
 
