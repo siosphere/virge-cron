@@ -2,6 +2,7 @@
 namespace Virge\Cron\Command;
 
 use Virge\Cli\Component\Process;
+use Virge\Core\Config;
 use Virge\Cron\Model\Job;
 
 /**
