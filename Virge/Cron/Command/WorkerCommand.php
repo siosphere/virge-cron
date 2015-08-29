@@ -20,7 +20,7 @@ class WorkerCommand {
     public function work($jobId) {
         
         $job = new Job();
-        if(!$job->load()){
+        if(!$job->load($jobId)){
             throw new \InvalidArgumentException(sprintf("No job found for Job ID: %s", $jobId));
         }
         $job->setStartedOn(new \DateTime);
