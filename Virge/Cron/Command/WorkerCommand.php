@@ -12,6 +12,8 @@ class WorkerCommand {
     
     const COMMAND = 'virge:cron:worker';
     
+    protected $path;
+    
     /**
      * Do a job
      * @param int $jobId
@@ -26,6 +28,8 @@ class WorkerCommand {
         $job->setStartedOn(new \DateTime);
         $job->setStartedBy(get_current_user());
         $job->save();
+        
+        $this->path = Config::get('base_path');
         
         $arguments = $job->getArguments();
         $argumentString = implode(" ", array_map(function($argument){
