@@ -17,7 +17,7 @@ class Cron {
      * @param mixed $jobCallable
      * @param string $cronExpr
      */
-    public static function add($jobName, $jobCallable, $jobArguments = [], $cronExpr = '0 0 * * *') {
+    public static function add($jobName, $jobCallable, $jobArguments = array(), $cronExpr = '0 0 * * *') {
         $job = new Job(array(
             'name'          =>  $jobName,
             'callable'      =>  $jobCallable,
