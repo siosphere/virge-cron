@@ -38,6 +38,7 @@ class SupervisorCommand extends \Virge\Cli\Component\Command
         }
         
         $this->startJobs();
+        $this->getJobService()->cleanupJobs();
     }
     
     /**
