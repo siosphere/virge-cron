@@ -7,9 +7,10 @@ use Virge\Cron\Model\Job;
  * 
  * @author Michael Kramer
  */
-class Cron {
+class Cron 
+{
     
-    protected static $_jobs = array();
+    protected static $_jobs = [];
     
     /**
      * 
@@ -17,12 +18,13 @@ class Cron {
      * @param mixed $jobCallable
      * @param string $cronExpr
      */
-    public static function add($jobName, $jobCallable, $jobArguments = array(), $cronExpr = '0 0 * * *') {
-        $job = new Job(array(
+    public static function add($jobName, $jobCallable, $jobArguments = [], $cronExpr = '0 0 * * *') 
+    {
+        $job = new Job([
             'name'          =>  $jobName,
             'callable'      =>  $jobCallable,
             'cron_expr'     =>  $cronExpr
-        ));
+        ]);
         $job->setArguments($jobArguments);
         return self::$_jobs[] = $job;
     }
@@ -31,7 +33,8 @@ class Cron {
      * Return all registered jobs as potential jobs
      * @return array
      */
-    public static function getPotentialJobs() {
+    public static function getPotentialJobs() 
+    {
         return self::$_jobs;
     }
 }

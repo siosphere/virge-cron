@@ -4,7 +4,8 @@ namespace Virge\Cron\Service;
  * 
  * @author Michael Kramer
  */
-class ExpressionService {
+class ExpressionService 
+{
     const SERVICE_ID = 'virge.cron.service.expression';
     
     /**
@@ -12,7 +13,8 @@ class ExpressionService {
      * @param string $cronExpr
      * @return array
      */
-    public function formatCronExpression($cronExpr){
+    public function formatCronExpression($cronExpr)
+    {
 		return explode(' ', $cronExpr);
 	}
     
@@ -21,7 +23,8 @@ class ExpressionService {
      * @param array $cronExpr
      * @return boolean
      */
-    public function isValidCronExpression($cronExpr){
+    public function isValidCronExpression($cronExpr)
+    {
         
         if(is_string($cronExpr)){
             $cronExpr = $this->formatCronExpression($cronExpr);
@@ -36,7 +39,8 @@ class ExpressionService {
      * @param int $num
      * @return boolean
      */
-    public function cronMatch($cronExpr, $num){
+    public function cronMatch($cronExpr, $num)
+    {
         if ($cronExpr === '*') {
             return true;
         }
@@ -98,7 +102,8 @@ class ExpressionService {
      * @param type $value
      * @return int|boolean
      */
-    public function getValue($value) {
+    public function getValue($value) 
+    {
        	$data = array(
             'jan'=>1,
             'feb'=>2,
@@ -142,7 +147,8 @@ class ExpressionService {
      * @param \DateTime $scheduleTime
      * @return type
      */
-    public function doesExpressionMatchTime($cronExpr, \DateTime $scheduleTime) {
+    public function doesExpressionMatchTime($cronExpr, \DateTime $scheduleTime) 
+    {
         return $this->cronMatch($cronExpr[0], $scheduleTime->format('i'))
 		 	&& $this->cronMatch($cronExpr[1], $scheduleTime->format('H'))
             && $this->cronMatch($cronExpr[2], $scheduleTime->format('d'))

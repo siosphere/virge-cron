@@ -13,17 +13,19 @@ use Virge\Virge;
  * Each cron runs in it's own process
  * @author Michael Kramer
  */
-class SupervisorCommand extends \Virge\Cli\Component\Command {
+class SupervisorCommand extends \Virge\Cli\Component\Command 
+{
     
     const COMMAND = 'virge:cron:supervisor';
     
-    protected $workers = array();
+    protected $workers = [];
     
     /**
      * Remove anything that is older than 15 minutes, we only want to keep 15 
      * minutes worth of history
      */
-    public function start () {
+    public function run()
+    {
         if($this->instanceAlreadyRunning()){
             return $this->terminate();
         }
@@ -38,7 +40,16 @@ class SupervisorCommand extends \Virge\Cli\Component\Command {
         $this->startJobs();
     }
     
-    public function startJobs() {
+    /**
+     * @deprecated
+     */
+    public function start() 
+    {
+        $this->run();
+    }
+    
+    protected function startJobs() 
+    {
         
         $jobs = $this->getJobService()->getRunnableJobs();
         
@@ -56,7 +67,8 @@ class SupervisorCommand extends \Virge\Cli\Component\Command {
     /**
      * Filter our currently running workers, see if we need to rateLimit anything
      */
-    protected function _filterWorkers() {
+    protected function _filterWorkers() 
+    {
         $filteredWorkers = array_filter($this->workers, function($worker) {
             return !$worker->isFinished();
         });
@@ -67,14 +79,16 @@ class SupervisorCommand extends \Virge\Cli\Component\Command {
     /**
      * @return JobService
      */
-    protected function getJobService() {
+    protected function getJobService() : JobService
+    {
         return Virge::service(JobService::SERVICE_ID);
     }
     
     /**
      * @return ScheduleService
      */
-    protected function getScheduleService() {
+    protected function getScheduleService() : ScheduleService
+    {
         return Virge::service(ScheduleService::SERVICE_ID);
     }
 }

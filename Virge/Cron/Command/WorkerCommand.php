@@ -9,7 +9,8 @@ use Virge\Cron\Model\Job;
  * 
  * @author Michael Kramer
  */
-class WorkerCommand {
+class WorkerCommand 
+{
     
     const COMMAND = 'virge:cron:worker';
     
@@ -20,7 +21,8 @@ class WorkerCommand {
      * @param int $jobId
      * @throws \InvalidArgumentException
      */
-    public function work($jobId) {
+    public function run($jobId) 
+    {
         
         $job = new Job();
         if(!$job->load($jobId)){
@@ -46,5 +48,13 @@ class WorkerCommand {
         $job->setFinishedOn(new \DateTime);
         $job->setSummary($command->getOutput());
         $job->save();
+    }
+
+    /**
+     * @deprecated
+     */
+    public function work($jobId)
+    {
+        $this->run($jobId);
     }
 }

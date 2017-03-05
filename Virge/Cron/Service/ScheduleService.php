@@ -9,7 +9,8 @@ use Virge\Virge;
  * 
  * @author Michael Kramer
  */
-class ScheduleService {
+class ScheduleService 
+{
     
     const SERVICE_ID = 'virge.cron.service.schedule';
     
@@ -18,7 +19,8 @@ class ScheduleService {
      * @param type $jobs
      * @param \DateTime $endTime
      */
-    public function scheduleJobs($endTime = null) {
+    public function scheduleJobs($endTime = null) 
+    {
         $jobs = Cron::getPotentialJobs();
         $startTime = new \DateTime();
         if($endTime === null){
@@ -39,7 +41,8 @@ class ScheduleService {
      * @return boolean
      * @throws \Exception
      */
-    protected function _scheduleJob(Job $job, \DateTime $scheduleTime) {
+    protected function _scheduleJob(Job $job, \DateTime $scheduleTime) 
+    {
         $cronExpr = $this->getExpressionService()->formatCronExpression($job->getCronExpr());
 
         if(!$this->getExpressionService()->isValidCronExpression($cronExpr)){
@@ -65,14 +68,16 @@ class ScheduleService {
      * @param \DateTime $scheduleTime
      * @return boolean
      */
-    public function canSchedule($cronExpr, \DateTime $scheduleTime){
+    public function canSchedule($cronExpr, \DateTime $scheduleTime)
+    {
 		 return $this->getExpressionService()->doesExpressionMatchTime($cronExpr, $scheduleTime);
 	}
     
     /**
      * @return ExpressionService
      */
-    protected function getExpressionService() {
+    protected function getExpressionService() 
+    {
         return Virge::service(ExpressionService::SERVICE_ID);
     }
 }

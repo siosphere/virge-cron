@@ -2,11 +2,8 @@
 namespace Virge\Cron;
 
 /**
- * 
- * @author Michael Kramer
+ * @deprecated
  */
-class Capsule extends \Virge\Core\Capsule {
-    public function registerCapsule() {
-        
-    }
+class Capsule extends CronCapsule
+{
 }

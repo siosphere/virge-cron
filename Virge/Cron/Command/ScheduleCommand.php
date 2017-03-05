@@ -10,14 +10,16 @@ use Virge\Virge;
  * 
  * @author Michael Kramer
  */
-class ScheduleCommand extends \Virge\Cli\Component\Command {
+class ScheduleCommand extends \Virge\Cli\Component\Command 
+{
     
     const COMMAND = 'virge:cron:schedule';
     
     /**
      * Schedule our potential jobs
      */
-    public function schedule () {
+    public function run() 
+    {
         $this->getScheduleService()->scheduleJobs();
         Cli::output('Sucessfully scheduled jobs');
     }
@@ -25,7 +27,8 @@ class ScheduleCommand extends \Virge\Cli\Component\Command {
     /**
      * @return ScheduleService
      */
-    protected function getScheduleService() {
+    protected function getScheduleService() : ScheduleService
+    {
         return Virge::service(ScheduleService::SERVICE_ID);
     }
 }

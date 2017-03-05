@@ -11,8 +11,8 @@ use Virge\Cron\Command\WorkerCommand;
  * 
  * @author Michael Kramer
  */
-Cli::add(CleanupCommand::COMMAND, "\\Virge\\Cron\\Command\\CleanupCommand", "cleanup");
-Cli::add(InitCommand::COMMAND, "\\Virge\\Cron\\Command\\InitCommand", "init");
-Cli::add(ScheduleCommand::COMMAND, "\\Virge\\Cron\\Command\\ScheduleCommand", "schedule");
-Cli::add(SupervisorCommand::COMMAND, "\\Virge\\Cron\\Command\\SupervisorCommand", "start");
-Cli::add(WorkerCommand::COMMAND, "\\Virge\\Cron\\Command\\WorkerCommand", "work");
+Cli::add(CleanupCommand::COMMAND, CleanupCommand::class);
+Cli::add(InitCommand::COMMAND, InitCommand::class);
+Cli::add(ScheduleCommand::COMMAND, ScheduleCommand::class);
+Cli::add(SupervisorCommand::COMMAND, SupervisorCommand::class);
+Cli::add(WorkerCommand::COMMAND, WorkerCommand::class);
