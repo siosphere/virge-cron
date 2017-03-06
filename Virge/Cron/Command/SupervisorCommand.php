@@ -33,12 +33,12 @@ class SupervisorCommand extends \Virge\Cli\Component\Command
         $this->path = Config::get('base_path');
         $this->command = WorkerCommand::COMMAND;
         
+        $this->getJobService()->cleanupJobs();
+        $this->startJobs();
+
         if(!$this->getJobService()->hasJobs()){
             $this->getScheduleService()->scheduleJobs();
         }
-        
-        $this->startJobs();
-        $this->getJobService()->cleanupJobs();
     }
     
     /**
