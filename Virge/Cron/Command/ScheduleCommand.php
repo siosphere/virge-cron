@@ -2,6 +2,7 @@
 
 namespace Virge\Cron\Command;
 
+use Virge\Cli\Component\Input;
 use Virge\Cli;
 use Virge\Cron\Service\ScheduleService;
 use Virge\Virge;
@@ -14,14 +15,15 @@ class ScheduleCommand extends \Virge\Cli\Component\Command
 {
     
     const COMMAND = 'virge:cron:schedule';
+    const COMMAND_HELP = 'Schedule cron jobs';
     
     /**
      * Schedule our potential jobs
      */
-    public function run() 
+    public function run(Input $input) 
     {
         $this->getScheduleService()->scheduleJobs();
-        Cli::output('Sucessfully scheduled jobs');
+        Cli::success('Sucessfully scheduled jobs');
     }
     
     /**

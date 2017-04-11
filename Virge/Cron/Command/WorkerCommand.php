@@ -2,6 +2,7 @@
 namespace Virge\Cron\Command;
 
 use Virge\Cli\Component\Process;
+use Virge\Cli\Component\Input;
 use Virge\Core\Config;
 use Virge\Cron\Model\Job;
 
@@ -13,6 +14,8 @@ class WorkerCommand
 {
     
     const COMMAND = 'virge:cron:worker';
+    const COMMAND_HELP = 'Used to run a given job';
+    const COMMAND_USAGE = 'virge:cron:worker [jobId]';
     
     protected $path;
     
@@ -21,9 +24,9 @@ class WorkerCommand
      * @param int $jobId
      * @throws \InvalidArgumentException
      */
-    public function run($jobId) 
+    public function run(Input $input) 
     {
-        
+        $jobId = $input->getArgument(0);
         $job = new Job();
         if(!$job->load($jobId)){
             throw new \InvalidArgumentException(sprintf("No job found for Job ID: %s", $jobId));

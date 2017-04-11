@@ -2,6 +2,7 @@
 
 namespace Virge\Cron\Command;
 
+use Virge\Cli\Component\Input;
 use Virge\Cron\Service\JobService;
 use Virge\Virge;
 
@@ -14,12 +15,13 @@ class CleanupCommand extends \Virge\Cli\Component\Command
 {
     
     const COMMAND = 'virge:cron:cleanup';
+    const COMMAND_HELP = 'Cleanup old jobs from the database table';
     
     /**
      * Remove anything that is older than 15 minutes, we only want to keep 15 
      * minutes worth of history
      */
-    public function run() 
+    public function run(Input $input) 
     {
         $this->getJobService()->cleanupJobs();
     }

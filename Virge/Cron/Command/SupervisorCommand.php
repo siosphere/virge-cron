@@ -2,6 +2,7 @@
 
 namespace Virge\Cron\Command;
 
+use Virge\Cli\Component\Input;
 use Virge\Cli\Component\Process;
 use Virge\Core\Config;
 use Virge\Cron\Service\JobService;
@@ -17,6 +18,7 @@ class SupervisorCommand extends \Virge\Cli\Component\Command
 {
     
     const COMMAND = 'virge:cron:supervisor';
+    const COMMAND_HELP = 'Start virge cron supervisor, will run all crons in our db table that are scheduled to be run';
     
     protected $workers = [];
     
@@ -24,7 +26,7 @@ class SupervisorCommand extends \Virge\Cli\Component\Command
      * Remove anything that is older than 15 minutes, we only want to keep 15 
      * minutes worth of history
      */
-    public function run()
+    public function run(Input $input)
     {
         if($this->instanceAlreadyRunning()){
             return $this->terminate();
