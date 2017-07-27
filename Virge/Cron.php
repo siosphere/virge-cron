@@ -11,6 +11,8 @@ class Cron
 {
     
     protected static $_jobs = [];
+
+    protected static $_scheduleCallbacks = [];
     
     /**
      * 
@@ -28,6 +30,16 @@ class Cron
         $job->setArguments($jobArguments);
         return self::$_jobs[] = $job;
     }
+
+    /**
+     * Will only be called when getting potential jobs
+     * you can add your Cli::add jobs within this callback
+     * to improve performance
+     */
+    public static function onSchedule(callable $callback)
+    {
+        return self::$_scheduleCallbacks[] = $callback;
+    }
     
     /**
      * Return all registered jobs as potential jobs
@@ -35,6 +47,10 @@ class Cron
      */
     public static function getPotentialJobs() 
     {
+        while($callback = array_pop(self::$_scheduleCallbacks)) {
+            call_user_func($callback);
+        }
+
         return self::$_jobs;
     }
 }
