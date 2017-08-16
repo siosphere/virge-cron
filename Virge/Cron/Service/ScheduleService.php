@@ -26,7 +26,8 @@ class ScheduleService
         if($endTime === null){
             $endTime = new \DateTime("+15 minutes");
         }
-        while($startTime != $endTime){
+        
+        while($startTime < $endTime){
             $startTime->modify('+1 minute');
             foreach($jobs as $job){
                 $this->_scheduleJob($job, $startTime);
