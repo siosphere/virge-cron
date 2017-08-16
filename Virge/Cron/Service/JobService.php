@@ -61,7 +61,7 @@ class JobService
         $startDate = new \DateTime();
         $startDate->modify("-{$minutes} minutes");
         
-        $sql = "DELETE FROM `virge_cron_job` WHERE `finished_on` <= ?";
-        Database::query($sql, [$startDate]);
+        $sql = "DELETE FROM `virge_cron_job` WHERE `finished_on` <= ? OR (`scheduled_for` <= ? AND `started_on` IS NULL)";
+        Database::query($sql, [$startDate, $startDate]);
     }
 }

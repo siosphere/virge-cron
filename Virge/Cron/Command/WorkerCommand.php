@@ -42,7 +42,7 @@ class WorkerCommand
             return "\"{$argument}\"";
         }, $arguments));
         
-        $command = new Process("php -f {$this->path}vadmin.php {$job->getCallable()} {$argumentString}");
+        $command = new Process("{$this->path}vadmin {$job->getCallable()} {$argumentString}");
         
         while(!$command->isFinished()){
             sleep(1);

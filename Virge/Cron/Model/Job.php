@@ -8,8 +8,15 @@ namespace Virge\Cron\Model;
  */
 class Job extends \Virge\ORM\Component\Model 
 {
+    const STATUS_OK = 'ok';
+    const STATUS_FAIL = 'fail';
+    const STATUS_SCHEDULED = 'scheduled';
+    const STATUS_QUEUED = 'queued';
+    
     protected $_table = 'virge_cron_job';
     
+    protected $status;
+
     /**
      * Get arguments
      * @return array

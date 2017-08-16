@@ -22,7 +22,14 @@ class InitCommand extends \Virge\Cli\Component\Command
     public function run(Input $input) 
     {
         Cli::important("Virge::Cron");
-        include_once Config::path("Virge\\Cron@resources/setup/db/cron_job.php");
+        
+        $command = new Input();
+        $command->setCommand('virge:db:schema:commit')
+        ->setOptions([
+            'dir' => new Option('dir', Config::path("Virge\\Cron@resources/setup/db/")),
+        ]);
+
+        Cli::execute($command);
         Cli::success('Successfully initialized cron table');
     }
 }

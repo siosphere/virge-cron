@@ -13,7 +13,9 @@ class Cron
     protected static $_jobs = [];
 
     protected static $_scheduleCallbacks = [];
-    
+
+    protected static $_inited = false;
+
     /**
      * 
      * @param string $jobName
@@ -47,10 +49,24 @@ class Cron
      */
     public static function getPotentialJobs() 
     {
+        self::init();
+
+        return self::$_jobs;
+    }
+
+    /**
+     * Run callbacks for initing of cron scheduled jobs
+     */
+    protected static function init()
+    {
+        if(self::$_inited) {
+            return;
+        }
+
         while($callback = array_pop(self::$_scheduleCallbacks)) {
             call_user_func($callback);
         }
 
-        return self::$_jobs;
+        self::$_inited = true;
     }
 }
