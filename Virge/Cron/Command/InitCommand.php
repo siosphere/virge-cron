@@ -2,7 +2,10 @@
 
 namespace Virge\Cron\Command;
 
-use Virge\Cli\Component\Input;
+use Virge\Cli\Component\{
+    Input,
+    Option
+};
 use Virge\Cli;
 use Virge\Core\Config;
 
