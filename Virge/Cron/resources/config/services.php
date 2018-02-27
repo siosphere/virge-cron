@@ -10,6 +10,6 @@ use Virge\Virge;
  * 
  * @author Michael Kramer
  */
-Virge::registerService(ExpressionService::SERVICE_ID, new ExpressionService());
-Virge::registerService(JobService::SERVICE_ID, new JobService());
-Virge::registerService(ScheduleService::SERVICE_ID, new ScheduleService());
+Virge::registerService(ExpressionService::SERVICE_ID, ExpressionService::class);
+Virge::registerService(JobService::SERVICE_ID, JobService::class);
+Virge::registerService(ScheduleService::SERVICE_ID, ScheduleService::class);
