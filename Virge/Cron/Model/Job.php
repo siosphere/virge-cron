@@ -16,6 +16,22 @@ class Job extends \Virge\ORM\Component\Model
     protected $_table = 'virge_cron_job';
     
     protected $status;
+    
+    protected $name;
+
+    protected $callable;
+
+    protected $arguments;
+
+    protected $scheduled_for;
+
+    protected $started_on;
+
+    protected $started_by;
+
+    protected $finished_on;
+
+    protected $summary;
 
     /**
      * Get arguments
